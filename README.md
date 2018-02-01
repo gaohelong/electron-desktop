@@ -9,7 +9,7 @@
 yarn add electron electron-builder wait-on concurrently --dev
 yarn add electron-is-dev
 
-/* create electron/electron.js */
+/* create public/electron.js */
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -22,6 +22,7 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({width: 900, height: 680});
+  mainWindow.openDevTools();
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
   mainWindow.on('closed', () => mainWindow = null);
 }
@@ -41,18 +42,18 @@ app.on('activate', () => {
 });
 
 /* package.json */
-"main": "electron/electron.js",
+"main": "public/electron.js",
 "homepage": "./",
 "author": "electron",
 "script": {
 	"electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
-	"electron-pack": "build --em.main=build/electron.js",
+	"electron-pack": "build --em.main=eleBuild/electron.js",
 	"preelectron-pack": "yarn build"
 },
 "build": {
   "appId": "com.example.electron-cra",
   "files": [
-    "build/**/*",
+    "eleBuild/**/*",
     "node_modules/**/*"
   ],
   "directories":{
