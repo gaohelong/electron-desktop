@@ -2,7 +2,7 @@
   "name": "react-redux-starter-kit",
   "version": "3.0.1",
   "description": "Get started with React, Redux, and React-Router!",
-  "main": "electron/electron.js",
+  "main": "public/electron.js",
   "homepage": "./",
   "scripts": {
     "clean": "rm -rf dist",
@@ -20,11 +20,11 @@
   "build": { 
     "appId": "com.example.electron-cra",
     "files": [
-      "build/**/*",
+      "eleBuild/**/*",
       "node_modules/**/*"
     ],
     "directories":{
-      "buildResources": "assets"
+      "buildResources": "eleBuild"
     }
   },
   "repository": {
